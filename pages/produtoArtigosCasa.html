@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noblesse Express Co.</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    :root{
+      --azul-principal:#0a2b5c;
+      --azul-secundario:#123d7a;
+      --azul-terciario:#1f5fb3;
+      --azul-claro:#eaf1fb;
+      --texto:#1b2430;
+      --texto-suave:#667085;
+      --texto-claro:#dbe6f7;
+      --branco:#ffffff;
+      --fundo:#f4f7fb;
+      --fundo-card:#ffffff;
+      --borda:1px solid rgba(10,43,92,0.08);
+      --sombra:0 10px 30px rgba(15, 23, 42, 0.08);
+      --sombra-hover:0 22px 50px rgba(15, 23, 42, 0.16);
+      --radius:22px;
+      --radius-sm:14px;
+      --transition:all .35s ease;
+      --gradiente-principal:linear-gradient(135deg, #0a2b5c 0%, #123d7a 55%, #1f5fb3 100%);
+      --gradiente-claro:linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(31,95,179,.06), transparent 28%),
+        radial-gradient(circle at top right, rgba(10,43,92,.06), transparent 24%),
+        linear-gradient(180deg, #f8fbff 0%, #f3f6fb 100%);
+      color:var(--texto);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1200px, 92%);
+      margin:0 auto;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.82);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(10,43,92,0.06);
+      transition:var(--transition);
+    }
+
+    header.scrolled{
+      box-shadow:0 10px 28px rgba(0,0,0,0.06);
+    }
+
+    .topo{
+      min-height:88px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo img{
+      width:62px;
+      height:62px;
+      object-fit:contain;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:0 8px 22px rgba(10,43,92,.08);
+    }
+
+    .logo-texto h1{
+      font-size:1.25rem;
+      color:var(--azul-principal);
+      margin-bottom:2px;
+      letter-spacing:.2px;
+    }
+
+    .logo-texto p{
+      font-size:.92rem;
+      color:var(--texto-suave);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      color:var(--azul-principal);
+      font-weight:600;
+      font-size:.96rem;
+      padding:10px 14px;
+      border-radius:999px;
+      transition:var(--transition);
+    }
+    .casa {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.home {
+    width: 50px;   
+    height: auto;
+    margin-right: 20px;
+}
+
+   
+
+    .nav a:hover{
+      background:var(--azul-claro);
+      color:var(--azul-secundario);
+    }
+
+    .nav .cta-topo{
+      background:var(--gradiente-principal);
+      color:#fff;
+      box-shadow:0 10px 20px rgba(10,43,92,.18);
+    }
+
+    .nav .cta-topo:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.04);
+      background:var(--gradiente-principal);
+      color:#fff;
+    }
+
+    .hero{
+      padding:48px 0 28px;
+      position:relative;
+    }
+
+    .hero-box{
+      position:relative;
+      overflow:hidden;
+      border-radius:32px;
+      background:var(--gradiente-principal);
+      color:#fff;
+      padding:72px 52px;
+      box-shadow:0 30px 70px rgba(10,43,92,0.18);
+      isolation:isolate;
+    }
+
+    .hero-box::before,
+    .hero-box::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,0.07);
+      z-index:0;
+      filter:blur(2px);
+      animation:floatShape 8s ease-in-out infinite;
+    }
+
+    .hero-box::before{
+      width:320px;
+      height:320px;
+      top:-120px;
+      right:-90px;
+    }
+
+    .hero-box::after{
+      width:220px;
+      height:220px;
+      bottom:-90px;
+      left:-50px;
+      animation-delay:2s;
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(255,255,255,0.12);
+      border-radius:999px;
+      font-size:.92rem;
+      font-weight:700;
+      margin-bottom:20px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero h2{
+      font-size:clamp(2.2rem, 4vw, 4rem);
+      line-height:1.08;
+      margin-bottom:18px;
+      max-width:760px;
+      letter-spacing:-1px;
+    }
+
+    .hero p{
+      font-size:1.05rem;
+      color:rgba(255,255,255,.88);
+      max-width:650px;
+      margin-bottom:28px;
+    }
+
+    .hero-acoes{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn-hero,
+    .btn-secundario{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 20px;
+      border-radius:14px;
+      font-weight:700;
+      transition:var(--transition);
+    }
+
+    .btn-hero{
+      background:#fff;
+      color:var(--azul-principal);
+      box-shadow:0 12px 25px rgba(0,0,0,.12);
+    }
+
+    .btn-hero:hover{
+      transform:translateY(-3px) scale(1.01);
+    }
+
+    .btn-secundario{
+      border:1px solid rgba(255,255,255,.22);
+      color:#fff;
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(10px);
+    }
+
+    .btn-secundario:hover{
+      background:rgba(255,255,255,.14);
+      transform:translateY(-3px);
+    }
+
+    .hero-painel{
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:22px;
+      backdrop-filter:blur(12px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .hero-mini-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:18px;
+      margin-bottom:14px;
+    }
+
+    .hero-mini-card:last-child{
+      margin-bottom:0;
+    }
+
+    .hero-mini-card strong{
+      display:block;
+      font-size:1.05rem;
+      margin-bottom:6px;
+    }
+
+    .hero-mini-card span{
+      display:block;
+      color:rgba(255,255,255,.82);
+      font-size:.95rem;
+    }
+
+    .info-bar{
+      margin-top:22px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .info-card{
+      background:rgba(255,255,255,0.86);
+      border:var(--borda);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:var(--sombra);
+      transition:var(--transition);
+    }
+
+    .info-card:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--sombra-hover);
+    }
+
+    .info-card h3{
+      font-size:1.45rem;
+      color:var(--azul-principal);
+      margin-bottom:6px;
+    }
+
+    .info-card p{
+      color:var(--texto-suave);
+      font-size:.95rem;
+    }
+
+    .secao{
+      padding:72px 0;
+    }
+
+    .secao-titulo{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 36px;
+    }
+
+    .secao-titulo span{
+      display:inline-block;
+      color:var(--azul-secundario);
+      background:var(--azul-claro);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.86rem;
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    .secao-titulo h3{
+      font-size:clamp(1.8rem, 3vw, 2.7rem);
+      color:var(--azul-principal);
+      margin-bottom:12px;
+      letter-spacing:-.5px;
+    }
+
+    .secao-titulo p{
+      color:var(--texto-suave);
+      font-size:1rem;
+    }
+
+    .grid-produtos{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:28px;
+    }
+
+    .card{
+      position:relative;
+      background:var(--fundo-card);
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:var(--borda);
+      box-shadow:var(--sombra);
+      transition:transform .4s ease, box-shadow .4s ease;
+      display:flex;
+      flex-direction:column;
+      isolation:isolate;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-120% auto auto -20%;
+      width:60%;
+      height:220%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.48), transparent);
+      transform:rotate(18deg);
+      transition:all .8s ease;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .card:hover::before{
+      left:120%;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:var(--sombra-hover);
+    }
+
+    .card-imagem{
+      position:relative;
+      background:var(--gradiente-claro);
+      padding:20px;
+      overflow:hidden;
+    }
+
+    .card-imagem::after{
+      content:"";
+      position:absolute;
+      inset:auto -30px -30px auto;
+      width:120px;
+      height:120px;
+      background:radial-gradient(circle, rgba(31,95,179,.12), transparent 70%);
+      border-radius:50%;
+    }
+
+    .card-imagem img{
+      width:100%;
+      height:290px;
+      object-fit:cover;
+      border-radius:18px;
+      transition:transform .55s ease;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+    }
+
+    .card:hover .card-imagem img{
+      transform:scale(1.04);
+    }
+
+    .card-body{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+
+    .card-topo{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      align-self:flex-start;
+      background:var(--azul-claro);
+      color:var(--azul-principal);
+      font-size:.8rem;
+      font-weight:700;
+      padding:8px 12px;
+      border-radius:999px;
+    }
+
+    .selo{
+      font-size:.78rem;
+      font-weight:700;
+      color:#1e7a43;
+      background:#e9f8ef;
+      padding:8px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+
+    .card-body h2{
+      font-size:1.4rem;
+      margin-bottom:10px;
+      color:var(--texto);
+      letter-spacing:-.4px;
+    }
+
+    .card-body p{
+      color:var(--texto-suave);
+      font-size:.98rem;
+      margin-bottom:18px;
+      flex:1;
+    }
+
+    .lista-beneficios{
+      list-style:none;
+      display:grid;
+      gap:8px;
+      margin-bottom:22px;
+    }
+
+    .lista-beneficios li{
+      color:#425466;
+      font-size:.93rem;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .lista-beneficios li::before{
+      content:"✓";
+      width:22px;
+      height:22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:#eaf6ee;
+      color:#177245;
+      font-weight:700;
+      flex-shrink:0;
+    }
+
+    .botao{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      background:var(--gradiente-principal);
+      color:#fff;
+      padding:14px 18px;
+      border-radius:14px;
+      font-weight:700;
+      transition:var(--transition);
+      box-shadow:0 10px 22px rgba(10,43,92,.18);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .botao::after{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      transition:left .7s ease;
+    }
+
+    .botao:hover::after{
+      left:100%;
+    }
+
+    .botao:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.04);
+    }
+
+    .credibilidade{
+      background:linear-gradient(180deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.95) 100%);
+      border-top:1px solid rgba(10,43,92,.05);
+      border-bottom:1px solid rgba(10,43,92,.05);
+    }
+
+    .cred-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:24px;
+    }
+
+    .cred-card{
+      background:#fff;
+      border-radius:22px;
+      padding:28px;
+      box-shadow:var(--sombra);
+      border:var(--borda);
+      transition:var(--transition);
+    }
+
+    .cred-card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--sombra-hover);
+    }
+
+    .cred-icone{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--azul-claro);
+      color:var(--azul-principal);
+      font-size:1.4rem;
+      margin-bottom:16px;
+    }
+
+    .cred-card h4{
+      font-size:1.2rem;
+      margin-bottom:10px;
+      color:var(--azul-principal);
+    }
+
+    .cred-card p{
+      color:var(--texto-suave);
+      font-size:.96rem;
+    }
+
+    .sobre-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:32px;
+      align-items:stretch;
+    }
+
+    .sobre-card,
+    .sobre-destaque{
+      background:#fff;
+      border-radius:26px;
+      padding:34px;
+      box-shadow:var(--sombra);
+      border:var(--borda);
+    }
+
+    .sobre-card h4,
+    .sobre-destaque h4{
+      font-size:1.5rem;
+      color:var(--azul-principal);
+      margin-bottom:14px;
+    }
+
+    .sobre-card p,
+    .sobre-destaque p{
+      color:var(--texto-suave);
+      margin-bottom:14px;
+    }
+
+    .sobre-lista{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .sobre-lista li{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      color:#425466;
+    }
+
+    .sobre-lista li::before{
+      content:"●";
+      color:var(--azul-terciario);
+      font-size:1rem;
+      line-height:1.2;
+      margin-top:1px;
+    }
+
+    .mini-estatisticas{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:16px;
+      margin-top:20px;
+    }
+
+    .mini-box{
+      padding:18px;
+      border-radius:18px;
+      background:linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border:1px solid rgba(10,43,92,.06);
+    }
+
+    .mini-box strong{
+      display:block;
+      color:var(--azul-principal);
+      font-size:1.4rem;
+      margin-bottom:4px;
+    }
+
+    .mini-box span{
+      color:var(--texto-suave);
+      font-size:.92rem;
+    }
+
+    footer{
+      background:#07172f;
+      color:rgba(255,255,255,.82);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .footer-conteudo{
+      padding:42px 0 26px;
+      display:grid;
+      grid-template-columns:1.1fr .7fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .footer-marca h4{
+      font-size:1.35rem;
+      margin-bottom:10px;
+      color:#fff;
+    }
+
+    .footer-marca p{
+      color:rgba(255,255,255,.72);
+      max-width:520px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.78);
+      transition:var(--transition);
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+      transform:translateX(3px);
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:18px 0 24px;
+      font-size:.93rem;
+      color:rgba(255,255,255,.62);
+      text-align:center;
+    }
+
+    .back-to-top{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:52px;
+      height:52px;
+      border:none;
+      border-radius:50%;
+      background:var(--gradiente-principal);
+      color:#fff;
+      font-size:1.2rem;
+      cursor:pointer;
+      box-shadow:0 12px 26px rgba(10,43,92,.28);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:var(--transition);
+      z-index:999;
+    }
+
+    .back-to-top.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .back-to-top:hover{
+      transform:translateY(-4px);
+    }
+
+    @keyframes floatShape{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(12px); }
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .sobre-grid,
+      .footer-conteudo,
+      .cred-grid,
+      .info-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-box{
+        padding:52px 28px;
+      }
+
+      .nav{
+        display:none;
+      }
+    }
+
+    @media (max-width: 768px){
+      .topo{
+        min-height:78px;
+      }
+
+      .logo img{
+        width:56px;
+        height:56px;
+      }
+
+      .logo-texto h1{
+        font-size:1.08rem;
+      }
+
+      .logo-texto p{
+        font-size:.84rem;
+      }
+
+      .hero{
+        padding-top:28px;
+      }
+
+      .hero-box{
+        border-radius:26px;
+        padding:42px 22px;
+      }
+
+      .hero h2{
+        font-size:2rem;
+      }
+
+      .hero p{
+        font-size:.98rem;
+      }
+
+      .hero-acoes{
+        flex-direction:column;
+      }
+
+      .btn-hero,
+      .btn-secundario{
+        width:100%;
+      }
+
+      .secao{
+        padding:56px 0;
+      }
+
+      .card-imagem img{
+        height:240px;
+      }
+
+      .sobre-card,
+      .sobre-destaque,
+      .cred-card{
+        padding:24px;
+      }
+
+      .mini-estatisticas{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="container topo">
+      <div class="logo">
+        <img src="../images/logoNoblesse.jpeg" alt="Logo Noblesse Express Co.">
+        <div class="logo-texto">
+          <h1>Noblesse Express Co.</h1>
+          <p>Soluções práticas para cozinha e casa</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#credibilidade">Diferenciais</a>
+        <a href="#sobre">Sobre</a>
+        <a class="cta-topo" href="#produtos">Ver catálogo</a>
+      </nav>
+
+      <div class="casa">
+        <a href="home.html"><img class="home" src="/images/casa.png" alt=""></a>
+</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-box reveal">
+          <div class="hero-grid">
+            <div class="hero-conteudo">
+              <div class="hero-badge">✨ Catálogo oficial Noblesse Express Co.</div>
+              <h2>Produtos selecionados para unir sofisticação, utilidade e confiança</h2>
+              <p>
+                Descubra uma curadoria especial de produtos para cozinha, limpeza e mesa posta,
+                com visual premium, funcionalidade real e qualidade pensada para valorizar o seu dia a dia.
+              </p>
+
+              <div class="hero-acoes">
+                <a class="btn-hero" href="#produtos">Ver produtos</a>
+                <a class="btn-secundario" href="#credibilidade">Nossos diferenciais</a>
+              </div>
+            </div>
+
+            <div class="hero-painel">
+              <div class="hero-mini-card">
+                <strong>Produtos selecionados</strong>
+                <span>Itens escolhidos para oferecer qualidade, utilidade e bom design.</span>
+              </div>
+              <div class="hero-mini-card">
+                <strong>Qualidade no dia a dia</strong>
+                <span>Produtos pensados para facilitar tarefas e melhorar a rotina.</span>
+              </div>
+              <div class="hero-mini-card">
+                <strong>Design e funcionalidade</strong>
+                <span>Combinação de estética, utilidade e praticidade.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="produtos">
+      <div class="container">
+        <div class="secao-titulo reveal">
+          <span>Nosso catálogo</span>
+          <h3>Produtos em destaque</h3>
+          <p>
+            Uma seleção especial de itens para casa com design atrativo,
+            proposta clara e foco em praticidade, elegância e funcionalidade.
+          </p>
+        </div>
+
+        <div class="grid-produtos">
+          <article class="card reveal">
+            <div class="card-imagem">
+              <img src="../images/vitagourmet.png" alt="Frigideira VitaGourmet">
+            </div>
+            <div class="card-body">
+              <div class="card-topo">
+                <span class="tag">Cozinha Premium</span>
+                <span class="selo">Alta procura</span>
+              </div>
+
+              <h2>Frigideira VitaGourmet</h2>
+              <p>
+                Tecnologia nanocerâmica premium, antiaderência real e composição
+                livre de PFOA/PTFE para mais segurança, desempenho e praticidade.
+              </p>
+
+              <ul class="lista-beneficios">
+                <li>Revestimento premium</li>
+                <li>Fácil de limpar</li>
+                <li>Mais elegância na cozinha</li>
+              </ul>
+
+              <a class="botao" href="https://br.shp.ee/C1qp98hx" target="_blank" rel="noopener noreferrer">
+                Ver produto
+              </a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-imagem">
+              <img src="../images/limpialux.png" alt="LimpiaLux 360">
+            </div>
+            <div class="card-body">
+              <div class="card-topo">
+                <span class="tag">Limpeza Inteligente</span>
+                <span class="selo">Mais praticidade</span>
+              </div>
+
+              <h2>LimpiaLux 360</h2>
+              <p>
+                Sistema de limpeza com giro 360°, criado para entregar mais eficiência,
+                menos esforço e uma rotina doméstica muito mais funcional.
+              </p>
+
+              <ul class="lista-beneficios">
+                <li>Giro 360°</li>
+                <li>Uso mais confortável</li>
+                <li>Limpeza rápida e prática</li>
+              </ul>
+
+              <a class="botao" href="https://br.shp.ee/5tkSn6Yj" target="_blank" rel="noopener noreferrer">
+                Ver produto
+              </a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-imagem">
+              <img src="../images/talheres.png" alt="Véronne Prestige">
+            </div>
+            <div class="card-body">
+              <div class="card-topo">
+                <span class="tag">Mesa Posta</span>
+                <span class="selo">Visual sofisticado</span>
+              </div>
+
+              <h2>Véronne Prestige</h2>
+              <p>
+                Conjunto premium de talheres em aço inox com 24 peças,
+                ideal para compor uma mesa elegante, refinada e marcante.
+              </p>
+
+              <ul class="lista-beneficios">
+                <li>Aço inox premium</li>
+                <li>Excelente apresentação</li>
+                <li>Ideal para ocasiões especiais</li>
+              </ul>
+
+              <a class="botao" href="https://br.shp.ee/YXs4kp9h" target="_blank" rel="noopener noreferrer">
+                Ver produto
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao credibilidade" id="credibilidade">
+      <div class="container">
+        <div class="secao-titulo reveal">
+          <span>Diferenciais</span>
+          <h3>Qualidade e confiança em cada produto</h3>
+          <p>
+            A Noblesse Express Co. seleciona produtos que combinam utilidade,
+            qualidade e design, oferecendo soluções práticas para o dia a dia
+            com um toque de sofisticação.
+          </p>
+        </div>
+
+        <div class="cred-grid">
+          <div class="cred-card reveal">
+            <div class="cred-icone">🛡️</div>
+            <h4>Qualidade selecionada</h4>
+            <p>
+              Cada produto é escolhido com foco em durabilidade, utilidade e
+              boa experiência no uso diário.
+            </p>
+          </div>
+
+          <div class="cred-card reveal">
+            <div class="cred-icone">⚡</div>
+            <h4>Design funcional</h4>
+            <p>
+              Produtos que unem estética e funcionalidade para tornar
+              o dia a dia mais prático e agradável.
+            </p>
+          </div>
+
+          <div class="cred-card reveal">
+            <div class="cred-icone">📱</div>
+            <h4>Praticidade no dia a dia</h4>
+            <p>
+              Itens pensados para facilitar tarefas da casa,
+              economizando tempo e trazendo mais conforto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="sobre">
+      <div class="container">
+        <div class="sobre-grid">
+          <div class="sobre-card reveal">
+            <h4>Sobre a Noblesse Express Co.</h4>
+            <p>
+              A Noblesse Express Co. foi pensada para apresentar produtos que unem estética,
+              funcionalidade e presença visual. A proposta é valorizar o ambiente da casa com itens
+              que entregam mais praticidade e um toque premium no dia a dia.
+            </p>
+            <p>
+              Nossa seleção reúne soluções para cozinha, limpeza e mesa posta,
+              sempre com foco em utilidade, elegância e boa experiência de uso.
+            </p>
+
+            <ul class="sobre-lista">
+              <li>Design elegante e moderno</li>
+              <li>Produtos com foco em utilidade e percepção premium</li>
+              <li>Mais praticidade e sofisticação para a casa</li>
+            </ul>
+          </div>
+
+          <div class="sobre-destaque reveal">
+            <h4>Diferenciais dos nossos produtos</h4>
+            <p>
+              Cada produto foi escolhido para oferecer utilidade real,
+              boa qualidade e um visual que valoriza o ambiente da casa.
+            </p>
+
+            <div class="mini-estatisticas">
+              <div class="mini-box">
+                <strong>+Qualidade</strong>
+                <span>Produtos com melhor acabamento</span>
+              </div>
+              <div class="mini-box">
+                <strong>+Praticidade</strong>
+                <span>Itens que facilitam o dia a dia</span>
+              </div>
+              <div class="mini-box">
+                <strong>+Design</strong>
+                <span>Estética moderna e elegante</span>
+              </div>
+              <div class="mini-box">
+                <strong>+Durabilidade</strong>
+                <span>Materiais mais resistentes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-conteudo">
+      <div class="footer-marca">
+        <h4>Noblesse Express Co.</h4>
+        <p>
+          Elegância, qualidade e praticidade reunidas em uma seleção especial
+          de produtos para transformar o dia a dia da sua casa.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#credibilidade">Diferenciais</a>
+        <a href="#sobre">Sobre</a>
+      
+        <br>
+      
+        <a href="https://beacons.ai/noblesseexpressco" target="_blank" rel="noopener noreferrer">
+          🔗 Central da Noblesse Express CO.
+        </a>
+      
+        <a href="https://instagram.com/noblesse_express_co" target="_blank" rel="noopener noreferrer">
+          <span style="display:inline-flex; align-items:center; margin-right:8px; vertical-align:middle;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM17.5 6.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z"/>
+            </svg>
+          </span>
+          @noblesse_express_co
+        </a>
+      </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Noblesse Express Co. - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">↑</button>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const backToTop = document.getElementById('backToTop');
+    const header = document.getElementById('header');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    reveals.forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50){
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      if(window.scrollY > 320){
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

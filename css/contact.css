@@ -1,0 +1,89 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #1b2838, #0f1923);
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+}
+
+header {
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #66c0f4;
+}
+
+.home {
+    width: 50px;   
+    height: auto;
+    filter: brightness(0) invert(1);  
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.card {
+    background: linear-gradient(180deg, #2a475e, #1b2838);
+    border-radius: 15px;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #66c0f4;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #b8c6d1;
+    margin: 0 0 20px;
+}
+
+.social-links a {
+    color: #66c0f4;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #1a9fff;
+}
+
+footer {
+    padding: 30px 20px;
+    margin-top: 9%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer a {
+    color: #66c0f4;
+    text-decoration: none;
+}
