@@ -25,6 +25,7 @@ header{
     max-height:70px;
     transition: transform 0.5s ease-in-out;
     cursor: pointer;
+    filter: brightness(0) invert(1);  
 }
 .logo img:hover{
     transform: rotate(180deg);
@@ -192,9 +193,9 @@ button:hover{
     }
 }
 .hero{
-height:500px;
+height:800px;
 width: auto;
-background:url('https://newr7-r7-prod.web.arc-cdn.net/resizer/v2/LY3PE3IS7RE5XBEPOUVRXHDOX4.jpeg?auth=d6ee00b49fe4db9afa2b002ddd337166368e0a3bba8f13731cab37d2a939b790&width=800&height=457') center/cover no-repeat;
+background:url('https://clan.akamai.steamstatic.com/images/27766192/e085df9f5ae9e053545f60260d96009d7b179774.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -222,4 +223,132 @@ margin-bottom:20px;
     background-color: rgba(0, 0, 0, 0.3); 
     color: white;
     padding: 10px;
+}
+.acoes {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px 15px;
+}
+
+.btn-fav, .btn-cart {
+    flex: 1;
+    margin: 0 5px;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn-fav {
+    background: #ff4d6d;
+}
+
+.btn-cart {
+    background: #66c0f4;
+}
+
+.btn-fav:hover, .btn-cart:hover {
+    transform: scale(1.05);
+}
+.cart-icon {
+    cursor: pointer;
+    width: 50px; 
+    margin-left: 20px;
+    filter: brightness(0) invert(1);  
+}
+.cart-icon img {
+    height: 30px;
+}
+.cart-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+}
+
+.cart-content {
+    background: #1b2838;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-item button {
+    background: red;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#close-x {
+    cursor: pointer;
+    float: right;
+}
+
+.hidden {
+    display: none !important;
+}
+.fav-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+}
+
+.fav-content {
+    background: #1b2838;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.fav-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.fav-item button {
+    background: red;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.fav-icon {
+    cursor: pointer;
+    margin-left: 10px;
+}
+.fav-icon img {
+    width: 30px;
+    filter: brightness(0) invert(1);  
 }
